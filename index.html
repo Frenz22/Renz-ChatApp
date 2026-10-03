@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Online Users</h2>
+            <div id="onlineUsers">
+                <div class="empty-state">Connecting...</div>
+            </div>
+        </div>
+        
+        <div class="chat-area">
+            <div class="chat-header">
+                <div class="chat-header-content">
+                    <div>
+                        <h1>Chat Room</h1>
+                        <p>Welcome to the chat! Connecting...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="chatMessages" class="chat-messages">
+                <!-- Messages will appear here -->
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type your message..." maxlength="500">
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+        
+        <div class="task-sidebar">
+            <h2>My Tasks</h2>
+            <div id="taskList">
+                <div class="empty-state">No tasks yet</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Assignment Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Assign Task</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p><strong>Message:</strong> <span id="modalMessageText"></span></p>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="selectAllUsers" checked>
+                        Select All Users
+                    </label>
+                </div>
+                <div id="userCheckboxes" class="user-checkboxes">
+                    <!-- User checkboxes will be populated here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-confirm">Create Task</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
