@@ -2,7 +2,7 @@
 
 Live demo: https://renz-chatapp.onrender.com/
 
-if you dont want to make an account use 
+Don't want to sign up? Use the demo account:
 Username : user
 Password : 123456
 
