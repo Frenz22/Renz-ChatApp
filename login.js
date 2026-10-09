@@ -5,6 +5,7 @@ let currentTab = 'login';
 function init() {
     setupTabs();
     setupForm();
+    setupGuestLogin();
     setupPasswordToggles();
 }
 
@@ -139,6 +140,45 @@ function setupForm() {
             } catch (error) {
                 showMessage('Connection error. Please try again.', 'error');
             }
+        }
+    });
+}
+
+function setupGuestLogin() {
+    const guestLoginBtn = document.getElementById('guestLoginBtn');
+
+    guestLoginBtn.addEventListener('click', async () => {
+        const guestUsername = 'Guest';
+        const guestPassword = '123456';
+        const messageDiv = document.getElementById('message');
+
+        messageDiv.textContent = '';
+        messageDiv.className = 'message';
+        showMessage('Logging in as guest...', 'success');
+
+        try {
+            const response = await fetch('/api/auth/guest', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: guestUsername, password: guestPassword })
+            });
+            const data = await response.json();
+
+            if (!response.ok) {
+                showMessage(data.error || 'Guest login failed', 'error');
+                return;
+            }
+
+            showMessage('Guest login successful! Redirecting to chat...', 'success');
+            setTimeout(() => {
+                localStorage.setItem('chat_token', data.token);
+                localStorage.setItem('chat_username', data.user.username);
+                window.location.href = '/index.html';
+            }, 1200);
+        } catch (error) {
+            showMessage('Connection error. Please try again.', 'error');
         }
     });
 }

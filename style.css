@@ -298,6 +298,37 @@ body {
     background: #5568d3;
 }
 
+.guest-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.guest-text {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+}
+
+.auth-form .guest-btn {
+    padding: 12px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.auth-form .guest-btn:hover {
+    background: #5568d3;
+}
+
 .password-input {
     display: flex;
     align-items: center;
