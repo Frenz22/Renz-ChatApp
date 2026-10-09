@@ -124,6 +124,46 @@ app.post('/api/auth/signup', async (req, res) => {
   }
 });
 
+app.post('/api/auth/guest', async (req, res) => {
+  try {
+    const username = 'guest';
+    const password = '123456';
+    let user = await User.findOne({ username });
+
+    if (!user) {
+      user = new User({ username, password, role: 'user' });
+      await user.save();
+    } else if (!await user.comparePassword(password)) {
+      return res.status(401).json({ error: 'Guest account credentials are invalid' });
+    }
+
+    user.lastSeen = new Date();
+    await user.save();
+
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        username: user.username,
+        role: user.role
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '7d' }
+    );
+
+    res.status(200).json({
+      message: 'Guest login successful',
+      token,
+      user: {
+        username: user.username,
+        role: user.role
+      }
+    });
+  } catch (error) {
+    console.error('Guest login error:', error);
+    res.status(500).json({ error: 'Server error during guest login' });
+  }
+});
+
 app.post('/api/auth/login', async (req, res) => {
   try {
     const { username, password } = req.body;
