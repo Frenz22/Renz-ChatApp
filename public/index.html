@@ -8,6 +8,11 @@
 </head>
 <body>
     <div class="container">
+        <nav class="mobile-nav" aria-label="Chat sections">
+            <button type="button" class="mobile-nav-btn" data-panel="users">Users</button>
+            <button type="button" class="mobile-nav-btn active" data-panel="chat">Chat</button>
+            <button type="button" class="mobile-nav-btn" data-panel="tasks">Tasks</button>
+        </nav>
         <div class="sidebar">
             <h2>Online Users</h2>
             <div id="onlineUsers">
@@ -43,6 +48,8 @@
         </div>
     </div>
 
+
+
     <!-- Task Assignment Modal -->
     <div id="taskModal" class="modal">
         <div class="modal-content">
@@ -69,7 +76,7 @@
         </div>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>

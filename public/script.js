@@ -12,22 +12,24 @@ function init() {
     // Check if user is logged in
     username = localStorage.getItem('chat_username');
     token = localStorage.getItem('chat_token');
-    
+
     if (!username || !token) {
         // Redirect to login if not authenticated
         window.location.href = '/login.html';
         return;
     }
-    
+
     connectToServer();
     setupEventListeners();
     setupLogout();
     loadUsers();
 }
 
+
 // Connect to Socket.io server with token
 function connectToServer() {
     socket = io({
+        transports: ['websocket'],
         query: { token: token }
     });
     
@@ -524,6 +526,28 @@ async function deleteTask(taskId) {
         console.error('Error deleting task:', error);
         alert('Failed to delete task');
     }
+}
+
+/* Mobile Panel Navigation */
+document.querySelectorAll('.mobile-nav-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const container = document.querySelector('.container');
+        const panel = button.dataset.panel;
+
+        container.dataset.activePanel = panel;
+
+        document.querySelectorAll('.mobile-nav-btn').forEach(navButton => {
+            const isActive = navButton === button;
+            navButton.classList.toggle('active', isActive);
+            navButton.setAttribute('aria-pressed', String(isActive));
+        });
+    });
+});
+
+const mobileContainer = document.querySelector('.container');
+
+if (mobileContainer && window.matchMedia('(max-width: 768px)').matches) {
+    mobileContainer.dataset.activePanel = 'chat';
 }
 
 // Make functions globally available
