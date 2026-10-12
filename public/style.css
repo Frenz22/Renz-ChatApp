@@ -672,3 +672,217 @@ body {
 .user-checkbox-item input[type="checkbox"] {
     cursor: pointer;
 }
+
+
+/* Mobile Panel Navigation */
+.mobile-nav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    body {
+        display: block;
+        overflow: hidden;
+    }
+
+    .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        height: 100dvh;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .mobile-nav {
+        display: flex;
+        flex: 0 0 auto;
+        gap: 6px;
+        padding: 8px;
+        background: white;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .mobile-nav-btn {
+        flex: 1;
+        padding: 10px 6px;
+        border: none;
+        border-radius: 6px;
+        background: #f1f2f6;
+        color: #444;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .mobile-nav-btn.active {
+        background: #667eea;
+        color: white;
+    }
+
+    .sidebar,
+    .chat-area,
+    .task-sidebar {
+        display: none;
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        flex: 1 1 auto;
+        overflow-y: auto;
+    }
+
+    .chat-area {
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .container[data-active-panel="users"] .sidebar,
+    .container[data-active-panel="chat"] .chat-area,
+    .container[data-active-panel="tasks"] .task-sidebar {
+        display: flex;
+    }
+
+    .sidebar {
+        padding: 12px;
+        border: none;
+    }
+
+    .sidebar h2,
+    .task-sidebar h2 {
+        font-size: 17px;
+        margin-bottom: 12px;
+    }
+
+    .user {
+        margin-bottom: 8px;
+    }
+
+    .chat-header {
+        flex: 0 0 auto;
+        padding: 12px 14px;
+    }
+
+    .chat-header h1 {
+        font-size: 20px;
+    }
+
+    .chat-messages {
+        flex: 1 1 auto;
+        min-height: 0;
+        padding: 12px;
+        overflow-y: auto;
+    }
+
+    .chat-messages .message {
+        max-width: 88%;
+        overflow-wrap: anywhere;
+    }
+
+    .chat-input {
+        flex: 0 0 auto;
+        padding: 10px;
+        gap: 8px;
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+
+    .chat-input input {
+        min-width: 0;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .chat-input button {
+        flex: 0 0 auto;
+        padding: 12px 16px;
+    }
+
+    .task-sidebar {
+        padding: 12px;
+        border: none;
+    }
+
+    .task {
+        margin-bottom: 10px;
+    }
+
+    .modal-content {
+        width: calc(100% - 24px);
+        max-height: calc(100dvh - 32px);
+        margin: 16px auto;
+        overflow-y: auto;
+    }
+}
+
+
+/* Mobile Users and Tasks Layout */
+@media (max-width: 768px) {
+    .sidebar,
+    .task-sidebar {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        width: 100%;
+        min-width: 0;
+        padding: 16px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .container[data-active-panel="users"] .sidebar,
+    .container[data-active-panel="tasks"] .task-sidebar {
+        display: flex;
+    }
+
+    .sidebar h2,
+    .task-sidebar h2 {
+        display: block;
+        flex: 0 0 auto;
+        width: 100%;
+        margin: 0 0 14px;
+        font-size: 18px;
+        line-height: 1.4;
+        overflow-wrap: normal;
+        white-space: normal;
+    }
+
+    #onlineUsers,
+    #taskList {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        min-width: 0;
+        gap: 8px;
+    }
+
+    #onlineUsers .user {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 12px;
+        flex: 0 0 auto;
+    }
+
+    #onlineUsers .username {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    #taskList .task {
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        flex: 0 0 auto;
+    }
+
+    #taskList .empty-state {
+        width: 100%;
+        padding: 16px 8px;
+        text-align: left;
+    }
+}
+

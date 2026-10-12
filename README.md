@@ -1,14 +1,8 @@
 # Chat App with Task Tagging
 
-Live demo: https://renz-chatapp.onrender.com/
-
-Don't want to sign up? Use the demo account:
-Username : user
-Password : 123456
-
 ## Why I built this
 
-Around the time I started job hunting, there was that whole trend of Discord getting banned/restricted in different places, and it got me thinking about how they work under the hood. I needed a solid portfolio project anyway, so instead of doing another to-do list or weather app clone, I decided to build my own real-time chat app from scratch — and push it a bit further than a basic clone by adding a tagging.
+Around the time I started job hunting, there was that whole trend of Discord getting banned/restricted in different places, and it got me thinking about how they work under the hood. I needed a solid portfolio project anyway, so instead of doing another to-do list or weather app clone, I decided to build my own real-time chat app from scratch — and push it a bit further than a basic clone by adding task tagging.
 
 ## What it does
 
@@ -32,11 +26,9 @@ That task-tagging feature is the part I'm proudest of — it's basically mixing 
 
 ## Deployment
 
-I'm deploying this on Render, specifically because Socket.IO needs a long-running server with persistent WebSocket connections — serverless platforms spin functions up and down per request, which breaks real-time connections. Render runs this as a normal, always-on-while-active Node process, so Socket.IO works the way it's supposed to, and unlike some alternatives.
+I'm deploying this on Vercel because its free hosting options fit my needs and allow the app to remain available without requiring a paid hosting plan.
 
-One tradeoff worth knowing: Render's free web services spin down after 15 minutes of no traffic and take 30-60 seconds to wake back up on the next request. So if nobody's used the live link in a while, the first load after that will feel slow before it kicks back in — that's expected, not a bug.
-
-**MongoDB** is hosted separately on MongoDB Atlas's, and Render connects to it over the internet using the same `MONGODB_URI` from the `.env` setup.
+**MongoDB** is hosted separately on MongoDB Atlas, and the app connects to it over the internet using the `MONGODB_URI` environment variable configured in the deployment settings.
 
 ## A note on where I'm at
 

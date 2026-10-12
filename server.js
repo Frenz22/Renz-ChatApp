@@ -43,7 +43,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to MongoDB
 connectDB();
@@ -516,7 +516,12 @@ io.on('connection', async (socket) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log('Open this URL in your browser to use the chat app');
-});
+
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+    console.log('Open this URL in your browser to use the chat app');
+  });
+}
+
+module.exports = server;
